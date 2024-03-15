@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <div className="header">
             <div className="logo-container">
-                <img className="logo" src="https://imgs.search.brave.com/gdmG6GFcfeMCEIBMeqgiTCLJ8U6bTYdRoiUI3qIag34/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni8xNDc0My8xNDc0/MzA5MC5wbmc"></img>
+                <img className="logo" src="https://raw.githubusercontent.com/ayushman31/react/main/4cheap/bha.png"></img>
             </div>
 
             <div className="nav-items">
