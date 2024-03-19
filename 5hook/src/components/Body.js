@@ -1,12 +1,30 @@
+import { useState } from "react";
 import Rescard from "./ResCard";
 import resList from "../utils/mockData";
 
 const Body = () => {
+  //Local State Variable - Super powerful variable
+  const [listOfRestraunts, setlistOfRestraunts] = useState(resList)
+
+  
+
   return (
     <div className="body">
-      <div className="search"> Search</div>
+      <div className="filter">
+        <button className="filter-btn" onClick={()=>{
+          //Filter Logic
+          const filteredList = listOfRestraunts.filter(res => res.card.card.info.avgRating > 4.1);
+          setlistOfRestraunts(filteredList);
+          console.log(listOfRestraunts);
+        }}>
+          Top Rated Restaurants.
+        </button>
+      </div>
+
+        {/* {console.log(listOfRestraunts)} */}
+
       <div className="res-container">
-        {resList.map((restraunt) => (
+        {listOfRestraunts.map((restraunt) => (
           <Rescard
             key={restraunt.card.card.info.id}
             resData={restraunt.card.card.info}
