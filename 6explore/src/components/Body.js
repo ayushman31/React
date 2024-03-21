@@ -5,7 +5,13 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   //Local State Variable - Super powerful variable
-  const [listOfRestraunts, setlistOfRestraunts] = useState([]);//we have put an empty array inside useState bcoz we want nothing initially and after the api gets called we want the result.
+  const [listOfRestraunts, setlistOfRestraunts] = useState([]); //we have put an empty array inside useState bcoz we want nothing initially and after the api gets called we want the result.
+  const [filteredRestraunt, setFilteredRestraunt] = useState([]);
+
+  const [searchText, setSearchText] = useState("");
+  
+  //Whenever state variables update, react triggers a reconciliation cycle (re-renders the component).
+  console.log("Body Renders");
 
   useEffect(() => {
     fetchData();
@@ -20,18 +26,42 @@ const Body = () => {
 
     console.log(json);
     setlistOfRestraunts(json?.data?.cards.slice(3)); //optional chaining
-    
+    setFilteredRestraunt(json?.data?.cards.slice(3)); 
   };
-
 
   //Conditional Rendering
   // if(listOfRestraunts.length === 0){
   //   return <Shimmer />
   // }
 
-  return listOfRestraunts.length === 0 ? <Shimmer /> :(
+  return listOfRestraunts.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              console.log(searchText);
+
+              const filteredRestraunt = listOfRestraunts.filter((res)=> res.card.card.info.name.toLowerCase().includes(searchText.toLowerCase()));
+
+              filteredRestraunt.length ===0 ? console.log("NO RESULT FOUND") : setFilteredRestraunt(filteredRestraunt);
+            }}
+          >
+            {" "}
+            Search
+          </button>
+        </div>
+
         <button
           className="filter-btn"
           onClick={() => {
@@ -39,7 +69,7 @@ const Body = () => {
             const filteredList = listOfRestraunts.filter(
               (res) => res.card.card.info.avgRating > 4.2
             );
-            setlistOfRestraunts(filteredList);
+            setFilteredRestraunt(filteredList); //instead of setFilteredRestraunt if we write setListofRestraunts why is not working ?
             //console.log(listOfRestraunts);
           }}
         >
@@ -50,11 +80,8 @@ const Body = () => {
       {/* {console.log(listOfRestraunts)} */}
 
       <div className="res-container">
-        {listOfRestraunts.map((restraunt) => (
-          <Rescard
-            key={restraunt.card.card.info.id}
-            resData={restraunt}
-          />
+        {filteredRestraunt.map((restraunt) => (
+          <Rescard key={restraunt.card.card.info.id} resData={restraunt} />
         ))}
         {/* <Rescard resData = {resList[0].card.card.info} /> //instead of writing this big code we can use map method as above.
                 <Rescard resData = {resList[1].card.card.info} />
