@@ -1,0 +1,28 @@
+{
+  "name": "9optimize",
+  "version": "1.0.0",
+  "description": "Optimizing our App.",
+  "main": "app.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Ayushman Singh",
+  "license": "ISC",
+  "devDependencies": {
+    "assert": "^2.1.0",
+    "console-browserify": "^1.2.0",
+    "parcel": "^2.12.0",
+    "process": "^0.11.10",
+    "util": "^0.12.5"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
+  }
+}
