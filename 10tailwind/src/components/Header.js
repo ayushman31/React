@@ -21,7 +21,7 @@ const Header = () => {
   }, [btnNameReact])
 
   return (
-    <div className="flex justify-between bg-pink-100 shadow-lg sticky top-0">
+    <div className="flex justify-between bg-pink-100 shadow-lg sticky top-0 sm:bg-yellow-50 lg:bg-green-50">
       <div className="logo-container">
         <img className="w-16 py-2 ml-2" src={LOGO_URL}></img>
       </div>
