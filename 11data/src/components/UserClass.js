@@ -11,16 +11,16 @@ class UserClass extends React.Component {
         location: "UserLocation"
       }
     };
-    console.log(this.props.name + "Child Constructor");
+    //console.log(this.props.name + "Child Constructor");
   }
 
   async componentDidMount(){
-    console.log(this.props.name + "Child Component Did Mount");
+    //console.log(this.props.name + "Child Component Did Mount");
 
     const data =await fetch("https://api.github.com/users/ayushman31")
     const json =await data.json();
 
-    console.log(json);
+    //console.log(json);
 
     this.setState({
         userInfo: json,
@@ -32,7 +32,7 @@ class UserClass extends React.Component {
     // const {count, count2} = this.state;
     const {name , location, avatar_url} = this.state.userInfo;
     // debugger;
-    console.log(this.props.name + "Child Render");
+    //console.log(this.props.name + "Child Render");
 
     return (
       <div className="user-card">

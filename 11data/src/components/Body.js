@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import Rescard, { withPromotedLabel } from "./ResCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 //import resList from "../utils/mockData";
 
 const Body = () => {
@@ -48,6 +49,8 @@ const Body = () => {
       </h1>
     );
 
+    const { loggedInUser , setUserName} = useContext(UserContext)
+
   return listOfRestraunts.length === 0 ? (
     <Shimmer />
   ) : (
@@ -82,6 +85,7 @@ const Body = () => {
             Search
           </button>
         </div>
+
         <div className="px-4 py-2  m-4 flex items-center">
           <button
             className="filter-btn px-4 py-2  m-4 flex items-center bg-gray-100 rounded-xl"
@@ -97,6 +101,12 @@ const Body = () => {
             Top Rated Restaurants.
           </button>
         </div>
+
+        <div className="search m-4 p-4 flex items-center">
+          <label>UserName : </label>
+          <input className="border border-black p-2" value={loggedInUser} onChange={(e) => setUserName(e.target.value)} />
+        </div>
+
       </div>
 
       {/* {console.log(listOfRestraunts)} */}
